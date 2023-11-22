@@ -1,1 +1,20 @@
-/home/adri/.config/spectaclerc
+[$Version]
+update_info=spectacle_clipboard.upd:clipboard-settings-change,spectacle_rememberregion.upd:spectacle-migrate-rememberregion
+
+[General]
+onLaunchAction=DoNotTakeScreenshot
+
+[GuiConfig]
+captureMode=5
+quitAfterSaveCopyExport=true
+window-position=526,237
+
+[KFileDialog Settings]
+Recent Files[$e]=file:$HOME/Pictures/class_diagram.png,file:$HOME/Pictures/class_diagram.png
+Recent URLs[$e]=file:$HOME/Pictures/
+detailViewIconSize=16
+
+[Save]
+defaultSaveLocation=file:///home/adri/Pictures/Screenshots
+lastSaveAsLocation=file:///home/adri/Pictures/class_diagram.png
+lastSaveLocation=file:///home/adri/Pictures/Screenshots/Screenshot_20231122_000237.png
