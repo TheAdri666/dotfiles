@@ -1,8 +1,12 @@
 # WM INDEPENDENT KEYBINDINGS
 
-# make sxhkd reload its configuration files:
+# make sxhkd reload its configuration files
 super + Escape
 	pkill -USR1 -x sxhkd
+
+# lock the screen
+super + control + l
+	i3lock -e -i /home/adri/Pictures/Ori-map.png
 
 # BSPWM HOTKEYS
 
