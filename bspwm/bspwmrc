@@ -10,6 +10,12 @@ BSPDIR="$HOME/.config/bspwm"
 # Load theme files
 source "$BSPDIR"/theme.ini
 
+# Make screen refresh rate 144Hz
+xrandr --output DisplayPort-0 --mode 1920x1080 --rate 144
+
+# Make floating windows move at 144Hz
+bspc config pointer_motion_interval 7ms
+
 # Get colors from theme files
 
 BLACK="$color0"
@@ -35,10 +41,10 @@ ALTWHITE="$color15"
 bspc monitor -d I II III IV V VI VII VIII IX X
 
 # Windows
-bspc config focused_border_color "$CYAN"
+bspc config focused_border_color "$ALTCYAN"
 bspc config normal_border_color  "$BLACK"
 bspc config window_gap           5
-bspc config border_width         1.5
+bspc config border_width         2 
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
@@ -118,10 +124,16 @@ do
   bspc rule -a $i desktop='^10' follow=on focus=on
 done
  
+# Open emoji picker as floating window
+declare -a floating=(plasma.emojier)
+for i in ${floating[@]}
+do
+  bspc rule -a $i state=floating
+done
 
 # AutoStart applications
 sxhkd &
 picom --config $HOME/.config/picom/picom.conf &
 nitrogen --restore &
 dunst &
-polybar &
+$HOME/.config/polybar/launch.sh

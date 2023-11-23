@@ -47,7 +47,7 @@ super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
 # focus the node for the given path jump
-super + {p,b,comma,period}
+super + {p,b,plus,minus}
 	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous node in the current desktop
@@ -123,15 +123,15 @@ XF86AudioMute
 
 #Switch to USB-C output
 super + alt + 1
-	pactl set-default-sink 53
+	pactl set-default-sink alsa_output.usb-Razer_Razer_Barracuda_X-00.analog-stereo
 
 # Switch to HDMI output
 super + alt + 2
-	pactl set-default-sink 50
+	pactl set-default-sink alsa_output.pci-0000_03_00.1.hdmi-stereo-extra3
 
 # Switch to USB output
 super + alt + 3
-	pactl set-default-sink 51
+	pactl set-default-sink alsa_output.usb-Blue_Microphones_Yeti_Stereo_Microphone_REV8-00.analog-stereo
 
 # APPLICATION KEYBINDINGS (Super + Alt + Key)
 
@@ -173,4 +173,8 @@ super + u
 
 #Open Visual Studio Code
 super + v
-	code	
+	code
+
+# Open Emoji Selector
+super + period
+	plasma-emojier

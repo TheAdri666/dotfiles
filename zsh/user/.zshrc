@@ -111,7 +111,7 @@ alias tts='festival --tts'
 alias discord-overlay='discovery-overlay'
 # PS1='%B%F{red}[%F{yellow}%n%F{green}@%F{039}%m %F{129}%~%F{red}]%F{white}%% %b%f'
 PS1='%B%F{red}[%F{11}%n%F{10}@%F{039}%m %F{129}%~%F{red}]%F{white}%% %b%f'
-neofetch
+neofetch | sed -e '/Raphael/d'
 
 export LC_ALL=en_US.UTF-8
 
