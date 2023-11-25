@@ -97,21 +97,21 @@ do
 done
 
 # Open misc utils on monitor 7
-declare -a utils=(kolourpaint Xclicker)
+declare -a utils=(kolourpaint Xclicker GParted Gnome-disks)
 for i in ${utils[@]}
 do
   bspc rule -a $i desktop='^7' follow=on focus=on
 done
 
 # Open file explorers on monitor 8
-declare -a explorers=(dolphin)
+declare -a explorers=(dolphin Thunar)
 for i in ${explorers[@]}
 do
   bspc rule -a $i desktop='^8' follow=on focus=on
 done
 
 # Open system apps on monitor 9
-declare -a system=(GParted systemsettings Gnome-disks)
+declare -a system=(systemsettings Xfce4-about Lightdm-gtk-greeter-settings)
 for i in ${system[@]}
 do
   bspc rule -a $i desktop='^9' follow=on focus=on
@@ -125,15 +125,25 @@ do
 done
  
 # Open emoji picker as floating window
-declare -a floating=(plasma.emojier)
+declare -a floating=(plasma.emojier Pavucontrol)
 for i in ${floating[@]}
 do
   bspc rule -a $i state=floating
 done
+
+# Terminate already running applications
+processes=("polybar" "sxhkd" "dunst" "stalonetray")
+
+	for process in "${processes[@]}"; do
+		if pgrep -f "$process"; then
+			pkill -9 -f "$process" > /dev/null; sleep 0.1
+		fi
+	done
 
 # AutoStart applications
 sxhkd &
 picom --config $HOME/.config/picom/picom.conf &
 nitrogen --restore &
 dunst &
+stalonetray -c $HOME/.config/stalonetray/stalonetrayrc & sleep 0.1 && xdo hide -N stalonetray && touch "/tmp/syshide.lock"
 $HOME/.config/polybar/launch.sh

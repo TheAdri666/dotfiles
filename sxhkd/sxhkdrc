@@ -5,7 +5,7 @@ super + Escape
 	pkill -USR1 -x sxhkd
 
 # lock the screen
-super + control + l
+super + alt + l
 	i3lock -e -i /home/adri/Pictures/Ori-map.png
 
 # BSPWM HOTKEYS
@@ -88,7 +88,6 @@ super + ctrl + {h,j,k,l}
 # preselect the ratio
 #super + ctrl + {1-9}
 #	bspc node -o 0.{1-9}
-
 # cancel the preselection for the focused node
 super + ctrl + space
 	bspc node -p cancel
@@ -139,9 +138,9 @@ super + alt + 3
 
 # APPLICATION KEYBINDINGS (Super + Alt + Key)
 
-# Run dmenu
-super + @space
-	dmenu_run
+#Run app launcher
+super + {_, alt + } @space
+	{rofi -show drun -theme $HOME/.config/polybar/scripts/Launcher.rasi, dmenu_run}
 
 # Copy screenshot to clipboard
 super + shift + s 
@@ -157,7 +156,7 @@ super + Return
 
 # Open file explorer
 super + e
-	kitty -e ranger
+	thunar
 
 # Open web browser
 super + w
@@ -181,4 +180,4 @@ super + v
 
 # Open Emoji Selector
 super + period
-	plasma-emojier
+	emoji-picker	
