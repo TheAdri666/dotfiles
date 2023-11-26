@@ -114,15 +114,15 @@ ctrl + alt + {Left,Down,Up,Right}
 
 # Raise volume
 XF86AudioRaiseVolume
-	pactl set-sink-volume 0 +1%
+	pulseaudio-ctl up 1%
 
 # Lower volume
 XF86AudioLowerVolume
-	pactl set-sink-volume 0 -1%
+	pulseaudio-ctl down 1%
 
 # Toggle mute
 XF86AudioMute
-	pactl set-sink-mute 0 toggle
+	pulseaudio-ctl mute
 
 #Switch to USB-C output
 super + alt + 1
