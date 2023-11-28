@@ -90,7 +90,7 @@ do
 done
 
 # Open gaming apps on monitor 6
-declare -a gaming=(steam Lutris yuzu pcsx2-qt Cemu dolphin-emu wiiu_usb_helper_.exe parsecd)
+declare -a gaming=(steam Lutris yuzu pcsx2-qt Cemu dolphin-emu wiiu_usb_helper_.exe parsecd galaxyclient.exe)
 for i in ${gaming[@]}
 do
   bspc rule -a $i desktop='^6' follow=on focus=on
