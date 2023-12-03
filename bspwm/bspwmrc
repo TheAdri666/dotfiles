@@ -140,7 +140,7 @@ if [[ $(xrandr -q | grep 'DisplayPort-1 connected') ]]; then
 fi
 
 # Terminate already running applications
-processes=("polybar" "sxhkd" "dunst" "stalonetray")
+processes=("polybar" "sxhkd" "dunst" "stalonetray" "xfce4-power-manager")
 
 	for process in "${processes[@]}"; do
 		if pgrep -f "$process"; then
@@ -153,6 +153,7 @@ sxhkd &
 picom --config $HOME/.config/picom/picom.conf &
 nitrogen --restore &
 dunst &
-stalonetray -c $HOME/.config/stalonetray/stalonetrayrc & sleep 0.1 && xdo hide -N stalonetray && touch "/tmp/syshide.lock"
+stalonetray -c $HOME/.config/stalonetray/stalonetrayrc & sleep 0.1 && xdo hide -N stalonetray && touch "/tmp/syshide.lock" &
+xfce4-power-manager &
 
 $HOME/.config/polybar/launch.sh

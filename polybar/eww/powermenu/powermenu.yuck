@@ -23,7 +23,7 @@
 		(button :class "powermenu reboot" 
 				:onclick "systemctl reboot"
 				:tooltip "Restart"
-				""))
+				""))
     (eventbox :cursor "pointer"
 		(button :class "powermenu shutdown" 
 				:onclick "systemctl poweroff"
