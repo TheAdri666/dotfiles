@@ -6,7 +6,7 @@ super + Escape
 
 # lock the screen
 super + alt + l
-	i3lock -e -t -i /home/adri/Pictures/Ori-map.png
+	i3lock -e -t -i $HOME/Pictures/Ori-map.png
 
 # BSPWM HOTKEYS
 
@@ -66,9 +66,17 @@ super + {less,greater}
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f, node -d} '^{1-9,10}' --follow
 
-# move focus/windows to the given desktop in the given monitor
-super + {_,shift + }{F1,F2};{1-9,0}
-	bspc {desktop -f, node -d} '^{1,2}:^{1-9,10}' --follow
+# move focus/window to the given desktop in the given monitor
+# super + {_,shift + }{F1,F2};{1-9,0}
+# 	bspc {desktop -f, node -d} '^{1,2}:^{1-9,10}' --follow
+
+# move focus to the given desktop in the given monitor
+super + {F1,F2};{1-9,0}
+	bspc desktop -f '^{1,2}:^{1-9,10}'
+
+# move window to the same desktop in the given monitor
+super + shift + {F1,F2}
+	sh -c "$HOME/.config/polybar/scripts/moveNodeToMonitor.sh {1,2}"
 
 # focus the last node/desktop
 alt + Tab
