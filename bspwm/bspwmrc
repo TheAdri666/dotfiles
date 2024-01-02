@@ -85,14 +85,14 @@ do
 done
 
 # Open office apps on monitor 5
-declare -a office=(libreoffice-startcenter acrord32.exe okular)
+declare -a office=(libreoffice-startcenter libreoffice-impress acrord32.exe okular)
 for i in ${office[@]}
 do
   bspc rule -a $i desktop='^5' follow=on focus=on
 done
 
 # Open gaming apps on monitor 6
-declare -a gaming=(steam Lutris yuzu pcsx2-qt Cemu dolphin-emu wiiu_usb_helper_.exe parsecd galaxyclient.exe leagueclientux.exe) 
+declare -a gaming=(steam Lutris yuzu pcsx2-qt Cemu dolphin-emu wiiu_usb_helper_.exe parsecd galaxyclient.exe leagueclientux.exe steam_app_435150)
 for i in ${gaming[@]}
 do
   bspc rule -a $i desktop='^6' follow=on focus=on

@@ -22,6 +22,9 @@ super + shift + Escape
 super + {_,shift + }q
 	bspc node -{c,k}
 
+alt + F4
+	bspc node -c
+
 # alternate between the tiled and monocle layout
 super + shift + m
 	bspc desktop -l next
@@ -142,10 +145,14 @@ super + alt + 1
 
 # Switch to HDMI output
 super + alt + 2
-	pactl set-default-sink alsa_output.pci-0000_03_00.1.hdmi-stereo-extra3
+	pactl set-default-sink alsa_output.pci-0000_03_00.1.hdmi-stereo-extra2
+
+# Switch to Audio Jack output
+super + alt + 3
+	pactl set-default-sink alsa_output.pci-0000_0f_00.6.analog-stereo
 
 # Switch to USB output
-super + alt + 3
+super + alt + 4
 	pactl set-default-sink alsa_output.usb-Blue_Microphones_Yeti_Stereo_Microphone_REV8-00.analog-stereo
 
 # APPLICATION KEYBINDINGS (Super + Alt + Key)
