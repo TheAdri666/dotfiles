@@ -155,6 +155,24 @@ super + alt + 3
 super + alt + 4
 	pactl set-default-sink alsa_output.usb-Blue_Microphones_Yeti_Stereo_Microphone_REV8-00.analog-stereo
 
+# PLAYER CONTROL
+
+# Play next
+XF86AudioNext
+	playerctl next
+
+# Play previous
+XF86AudioPrev
+	playerctl previous
+
+# Play / pause
+XF86AudioPlay
+	playerctl play-pause
+
+# Stop
+XF86AudioStop
+	playerctl stop
+
 # APPLICATION KEYBINDINGS (Super + Alt + Key)
 
 #Run app launcher
@@ -200,3 +218,7 @@ super + v
 # Open Emoji Selector
 super + period
 	emoji-picker	
+
+# Open volume mixer
+super + a
+	kitty -e pulsemixer

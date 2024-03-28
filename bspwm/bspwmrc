@@ -17,6 +17,9 @@ xrandr --output DisplayPort-1 --mode 1920x1080 --rate 144
 # Make floating windows move at 144Hz
 bspc config pointer_motion_interval 7ms
 
+# Lower default mouse input speed
+xinput --set-prop "pointer:Razer Razer Mamba Elite" "libinput Accel Speed" -0.8 
+
 # Get colors from theme files
 
 BLACK="$color0"
@@ -99,7 +102,7 @@ do
 done
 
 # Open misc utils on monitor 7
-declare -a utils=(kolourpaint Xclicker GParted Gnome-disks PacketTracer simple_droidcam_client)
+declare -a utils=(kolourpaint Xclicker GParted Gnome-disks PacketTracer simple_droidcam_client qBittorrent)
 for i in ${utils[@]}
 do
   bspc rule -a $i desktop='^7' follow=on focus=on
