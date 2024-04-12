@@ -102,7 +102,7 @@ do
 done
 
 # Open misc utils on monitor 7
-declare -a utils=(kolourpaint Xclicker GParted Gnome-disks PacketTracer simple_droidcam_client qBittorrent)
+declare -a utils=(kolourpaint Xclicker GParted Gnome-disks PacketTracer simple_droidcam_client qBittorrent unityhub Unity)
 for i in ${utils[@]}
 do
   bspc rule -a $i desktop='^7' follow=on focus=on
