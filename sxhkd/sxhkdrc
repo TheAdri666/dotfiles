@@ -222,3 +222,7 @@ super + period
 # Open volume mixer
 super + a
 	kitty -e pulsemixer
+
+#Open steam
+super + r
+	steam-runtime
