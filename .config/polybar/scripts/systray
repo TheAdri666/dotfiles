@@ -1,0 +1,36 @@
+!/usr/bin/env bash
+
+hidden=/tmp/syshide.lock
+file="$HOME/.config/polybar/modules.ini"
+state_file="$HOME/.config/polybar/systray_state"
+
+# Function to read the systray state from the file
+read_systray_state() {
+    if [[ -e $state_file ]]; then
+        cat "$state_file"
+    else
+        echo "1"
+    fi
+}
+
+# Function to write the systray state to the file
+write_systray_state() {
+    echo "$1" > "$state_file"
+}
+
+# Read the current systray state
+current_state=$(read_systray_state)
+
+if [[ $current_state == "1" ]]; then
+    polybar-msg action "#systray.hook.1"
+    xdo hide -n stalonetray
+    touch "$hidden"
+    write_systray_state "2"
+else
+    polybar-msg action "#systray.hook.0"
+    xdo show -n stalonetray
+    xdo raise -n stalonetray
+    rm "$hidden"
+    write_systray_state "1"
+fi
+

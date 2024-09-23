@@ -1,0 +1,228 @@
+# WM INDEPENDENT KEYBINDINGS
+
+# make sxhkd reload its configuration files
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# lock the screen
+super + alt + l
+	i3lock -e -t -i $HOME/Pictures/Ori-map.png
+
+# BSPWM HOTKEYS
+
+# restart bspwm
+super + alt + Escape
+	bspc wm -r
+
+# quit bspwm
+super + shift + Escape
+	bspc quit
+
+# close and kill
+super + {_,shift + }q
+	bspc node -{c,k}
+
+alt + F4
+	bspc node -c
+
+# alternate between the tiled and monocle layout
+super + shift + m
+	bspc desktop -l next
+
+# send the newest marked node to the newest preselected node
+super + y
+	bspc node newest.marked.local -n newest.!automatic.local
+
+# swap the current node and the biggest node
+super + g
+	bspc node -s biggest.local
+
+# STATE/FLAGS
+
+# set the window state
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+super + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+# FOCUS/SWAP
+
+# focus the node in the given direction
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus the node for the given path jump
+super + {p,b,plus,minus}
+	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous node in the current desktop
+super + {_,shift + }n
+	bspc node -f {next,prev}.local
+
+# focus the next/previous desktop in the current monitor
+super + {less,greater}
+	bspc desktop -f {prev,next}.local
+
+# move focus/window to the given desktop in the main monitor
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f, node -d} '^{1-9,10}' --follow
+
+# move focus/window to the given desktop in the given monitor
+# super + {_,shift + }{F1,F2};{1-9,0}
+# 	bspc {desktop -f, node -d} '^{1,2}:^{1-9,10}' --follow
+
+# move focus to the given desktop in the given monitor
+super + {F1,F2};{1-9,0}
+	bspc desktop -f '^{1,2}:^{1-9,10}'
+
+# move window to the same desktop in the given monitor
+super + shift + {F1,F2}
+	sh -c "$HOME/.config/polybar/scripts/moveNodeToMonitor.sh {1,2}"
+
+# focus the last node/desktop
+alt + Tab
+	bspc node -f last
+
+alt + shift + Tab
+	bspc desktop -f last
+
+# focus the older or newer node in the focus history
+super + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# PRESELECT
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+#super + ctrl + {1-9}
+#	bspc node -o 0.{1-9}
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+# MOVE/RESIZE
+
+# expand a window by moving one of its side outward
+ctrl + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+ctrl + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# move a floating window
+ctrl + alt + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# VOLUME CONTROL
+
+# Raise volume
+XF86AudioRaiseVolume
+	pulseaudio-ctl up 1%
+
+# Lower volume
+XF86AudioLowerVolume
+	pulseaudio-ctl down 1%
+
+# Toggle mute
+XF86AudioMute
+	pulseaudio-ctl mute
+
+#Switch to USB-C output
+super + alt + 1
+	pactl set-default-sink alsa_output.usb-Razer_Razer_Barracuda_X-00.analog-stereo
+
+# Switch to HDMI output
+super + alt + 2
+	pactl set-default-sink alsa_output.pci-0000_03_00.1.hdmi-stereo-extra2
+
+# Switch to Audio Jack output
+super + alt + 3
+	pactl set-default-sink alsa_output.pci-0000_0f_00.6.analog-stereo
+
+# Switch to USB output
+super + alt + 4
+	pactl set-default-sink alsa_output.usb-Blue_Microphones_Yeti_Stereo_Microphone_REV8-00.analog-stereo
+
+# PLAYER CONTROL
+
+# Play next
+XF86AudioNext
+	playerctl next
+
+# Play previous
+XF86AudioPrev
+	playerctl previous
+
+# Play / pause
+XF86AudioPlay
+	playerctl play-pause
+
+# Stop
+XF86AudioStop
+	playerctl stop
+
+# APPLICATION KEYBINDINGS (Super + Alt + Key)
+
+#Run app launcher
+super + {_, alt + } @space
+	{rofi -show drun -theme $HOME/.config/polybar/scripts/Launcher.rasi, dmenu_run}
+
+# Copy screenshot to clipboard
+super + shift + s 
+	spectacle -brc	
+
+# Save screenshot
+super + ctrl + shift + s
+	spectacle -br
+
+# Open terminal
+super + Return
+	kitty
+
+# Open file explorer
+super + e
+	thunar
+
+# Open web browser
+super + w
+	firefox
+
+# Open telegram
+super + m
+	telegram-desktop
+
+# Open discord
+super + d
+	discord
+
+# Open spotify
+super + u 
+	spotify
+
+#Open Visual Studio Code
+super + v
+	code
+
+# Open Emoji Selector
+super + period
+	emoji-picker	
+
+# Open volume mixer
+super + a
+	kitty -e pulsemixer
+
+#Open steam
+super + r
+	steam-runtime

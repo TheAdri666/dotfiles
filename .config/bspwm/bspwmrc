@@ -1,0 +1,162 @@
+#! /bin/sh
+
+## GENERAL
+
+#Bspwm config directory
+BSPDIR="$HOME/.config/bspwm"
+
+## CURRENT THEME
+
+# Load theme files
+source "$BSPDIR"/theme.ini
+
+# Make screen refresh rate 144Hz
+xrandr --output DisplayPort-0 --mode 1920x1080 --rate 144
+xrandr --output DisplayPort-1 --mode 1920x1080 --rate 144
+
+# Make floating windows move at 144Hz
+bspc config pointer_motion_interval 7ms
+
+# Lower default mouse input speed
+xinput --set-prop "pointer:Razer Razer Mamba Elite" "libinput Accel Speed" -0.8 
+
+# Get colors from theme files
+
+BLACK="$color0"
+RED="$color1"
+GREEN="$color2"
+YELLOW="$color3"
+BLUE="$color4"
+MAGENTA="$color5"
+CYAN="$color6"
+WHITE="$color7"
+ALTBLACK="$color8"
+ALTRED="$color9"
+ALTGREEN="$color10"
+ALTYELLOW="$color11"
+ALTBLUE="$color12"
+ALTMAGENTA="$color13"
+ALTCYAN="$color14"
+ALTWHITE="$color15" 
+
+#CONFIGURATIONS
+
+# Monitors
+bspc monitor DisplayPort-0 -d I II III IV V VI VII VIII IX X
+bspc monitor DisplayPort-1 -d I II III IV V VI VII VIII IX X 
+
+# Windows
+bspc config focused_border_color "$ALTCYAN"
+bspc config normal_border_color  "$BLACK"
+bspc config window_gap           5
+bspc config border_width         2 
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+## Custom rules
+
+# Remove all rules first
+bspc rule -r *:*
+
+# Open web browsers on monitor 1
+declare -a browsers=(firefox Google-chrome)
+for i in ${browsers[@]}
+do
+  bspc rule -a $i desktop='^1' follow=on focus=on
+done
+
+# Open code editors on monitor 2
+declare -a editors=(Code)
+for i in ${editors[@]}
+do
+  bspc rule -a $i desktop='^2' follow=on focus=on
+done
+
+# Open communications apps on monitor 3
+declare -a communications=(TelegramDesktop whatsapp-nativefier-d40211 discord Signal)
+for i in ${communications[@]}
+do
+  bspc rule -a $i desktop='^3' follow=on focus=on
+done
+
+# Open media apps on monitor 4
+declare -a media=(vlc obs Gimp kdenlive scrcpy Spotify Eog Stremio)
+for i in ${media[@]}
+do
+  bspc rule -a $i desktop='^4' follow=on focus=on
+done
+
+# Open office apps on monitor 5
+declare -a office=(libreoffice-startcenter libreoffice-impress acrord32.exe okular)
+for i in ${office[@]}
+do
+  bspc rule -a $i desktop='^5' follow=on focus=on
+done
+
+# Open gaming apps on monitor 6
+declare -a gaming=(steam Lutris yuzu pcsx2-qt Cemu dolphin-emu wiiu_usb_helper_.exe parsecd galaxyclient.exe leagueclientux.exe steam_app_435150 steam_app_2781320 suyu Ryujinx steam_app_2437170)
+for i in ${gaming[@]}
+do
+  bspc rule -a $i desktop='^6' follow=on focus=on
+done
+
+# Open misc utils on monitor 7
+declare -a utils=(kolourpaint Xclicker GParted Gnome-disks PacketTracer simple_droidcam_client qBittorrent unityhub Unity Blueman-manager)
+for i in ${utils[@]}
+do
+  bspc rule -a $i desktop='^7' follow=on focus=on
+done
+
+# Open file explorers on monitor 8
+declare -a explorers=(dolphin Thunar)
+for i in ${explorers[@]}
+do
+  bspc rule -a $i desktop='^8' follow=on focus=on
+done
+
+# Open system apps on monitor 9
+declare -a system=(systemsettings Xfce4-about Lightdm-gtk-greeter-settings)
+for i in ${system[@]}
+do
+  bspc rule -a $i desktop='^9' follow=on focus=on
+done
+
+# Open terminals on monitor 10
+declare -a terminals=(kitty konsole)
+for i in ${terminals[@]}
+do
+  bspc rule -a $i desktop='^10' follow=on focus=on
+done
+ 
+# Open emoji picker as floating window
+declare -a floating=(plasma.emojier Pavucontrol)
+for i in ${floating[@]}
+do
+  bspc rule -a $i state=floating
+done
+
+# Run double monitor setup
+if [[ $(xrandr -q | grep 'DisplayPort-1 connected') ]]; then
+  xrandr --output DisplayPort-0 --primary --mode 1920x1080 --rotate normal --output DisplayPort-1 --mode 1920x1080 --rotate normal --left-of DisplayPort-0
+  bspc monitor DisplayPort-0 -s DisplayPort-1
+fi
+
+# Terminate already running applications
+processes=("polybar" "sxhkd" "dunst" "stalonetray" "xfce4-power-manager")
+
+	for process in "${processes[@]}"; do
+		if pgrep -f "$process"; then
+			pkill -9 -f "$process" > /dev/null; sleep 0.1
+		fi
+	done
+
+# AutoStart applications
+sxhkd &
+picom --config $HOME/.config/picom/picom.conf &
+nitrogen --restore &
+dunst &
+stalonetray -c $HOME/.config/stalonetray/stalonetrayrc & sleep 0.1 && xdo hide -N stalonetray && touch "/tmp/syshide.lock" &
+xfce4-power-manager &
+
+$HOME/.config/polybar/launch.sh
