@@ -180,7 +180,7 @@
     },
     "custom/power": {
         "format": "<span font-size='x-large'> </span>",
-        "on-click": "wlogout &",
+        "on-click": "wlogout -b 6 &",
         "tooltip": false
     },
     "custom/updates": {
