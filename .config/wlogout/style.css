@@ -1,0 +1,51 @@
+window {
+    font-family: Ubuntu Nerd Font, monospace;
+    font-size: 14pt;
+    color: #cdd6f4; 
+    background-color: rgba(0, 0, 0, .9);
+}
+
+button {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    border: none;
+    color: #fbf1c7;
+    text-shadow: none;
+    border-radius: 40px;
+    margin: 30px;
+    background-color: rgba(1, 121, 111, 0);
+    transition: box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+button:focus,
+button:hover {
+    background-color: rgba(213, 196, 161, 0.1);
+    outline: none;
+}
+
+#lock {
+    background-image: image(url("/home/adri/.config/wlogout/icons/lock.png"));
+    background-size: 132.5%;
+}
+
+#hibernate {
+    background-image: image(url("/home/adri/.config/wlogout/icons/hibernate.png"));
+    background-size: 112.5%;
+}
+
+#logout {
+    background-image: image(url("/home/adri/.config/wlogout/icons/logout.png"));
+}
+
+#shutdown {
+    background-image: image(url("/home/adri/.config/wlogout/icons/power.png"));
+}
+
+#suspend {
+    background-image: image(url("/home/adri/.config/wlogout/icons/sleep.png"));
+} 
+
+#reboot {
+    background-image: image(url("/home/adri/.config/wlogout/icons/restart.png"));
+}
