@@ -2,7 +2,7 @@ daemonize
 show-failed-attempts
 font="JetBrainsMono Nerd Font"
 image="/home/adri/Pictures/Arch-dracula.png"
-indicator-radius=200
+indicator-radius=100
 line-color=282A36
 ring-color=BD93F9
 inside-color=282A36
