@@ -187,8 +187,8 @@
         "format": " {}",
         "return-type": "json",
         "on-click": "kitty -e topgrade --skip-notify && yay -Rns $(pacman -Qtdq)",
-        "exec-if": "which waybar-updates -i 5 -c 720",
-        "exec": "waybar-updates"
+        "exec-if": "which waybar-updates",
+        "exec": "waybar-updates -i 6 -c 600"
     },
     // modules for padding //
     "custom/left": {
