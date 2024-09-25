@@ -26,26 +26,29 @@ button:hover {
 
 #lock {
     background-image: image(url("/home/adri/.config/wlogout/icons/lock.png"));
-    background-size: 132.5%;
-}
-
-#hibernate {
-    background-image: image(url("/home/adri/.config/wlogout/icons/hibernate.png"));
-    background-size: 112.5%;
-}
-
-#logout {
-    background-image: image(url("/home/adri/.config/wlogout/icons/logout.png"));
+    background-size: 120%;
 }
 
 #shutdown {
     background-image: image(url("/home/adri/.config/wlogout/icons/power.png"));
+    background-size: 90%;
+}
+
+#reboot {
+    background-image: image(url("/home/adri/.config/wlogout/icons/restart.png"));
 }
 
 #suspend {
     background-image: image(url("/home/adri/.config/wlogout/icons/sleep.png"));
 } 
 
-#reboot {
-    background-image: image(url("/home/adri/.config/wlogout/icons/restart.png"));
+#hibernate {
+    background-image: image(url("/home/adri/.config/wlogout/icons/hibernate.png"));
+    background-size: 80%;
 }
+
+#logout {
+    background-image: image(url("/home/adri/.config/wlogout/icons/logout.png"));
+    background-size: 95%;
+}
+
