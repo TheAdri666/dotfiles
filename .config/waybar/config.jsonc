@@ -120,8 +120,8 @@
         "format-muted": "<span font-size='x-large'>󰝟 </span>",
         "on-click-right": "GDK_BACKEND=x11 pavucontrol -t 3",
         "on-click": "pactl set-sink-mute $(pactl get-default-sink) toggle",
-        "on-scroll-up": "~/.config/hypr/scripts/volumecontrol.sh -i",
-        "on-scroll-down": "~/.config/hypr/scripts/volumecontrol.sh -d",
+        "on-scroll-up": "~/.config/hypr/scripts/volume-control.sh -i",
+        "on-scroll-down": "~/.config/hypr/scripts/volume-control.sh -d",
         "tooltip-format": "{icon} {desc} // {volume}%",
         "scroll-step": 5,
         "format-icons": {
