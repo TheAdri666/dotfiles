@@ -2,19 +2,19 @@ return {
   "windwp/nvim-autopairs",
   event = { "InsertEnter" },
   dependencies = {
-    "hrsh7th/nvim-cmp"
+    "hrsh7th/nvim-cmp",
   },
   config = function()
     -- Import nvim-autopairs.
     local autopairs = require("nvim-autopairs")
-    
+
     -- Configure autopairs.
     autopairs.setup({
       check_ts = true,
       ts_config = {
         lua = { "string" },
-        javascript = { "template_string" }
-      }
+        javascript = { "template_string" },
+      },
     })
 
     -- Import nvim-autopairs completion functionality.
@@ -25,5 +25,5 @@ return {
 
     -- Make autopairs and completion work together.
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-  end
+  end,
 }

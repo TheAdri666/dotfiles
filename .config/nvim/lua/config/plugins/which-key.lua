@@ -7,6 +7,5 @@ return {
   end,
   opts = {
     -- Leave empty for default config.
-  }
+  },
 }
-

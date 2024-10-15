@@ -8,7 +8,7 @@ if not vim.loop.fs_stat(lazypath) then
     "--filter=blob:none",
     "--branch=stable",
     lazyrepo,
-    lazypath
+    lazypath,
   })
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
@@ -27,7 +27,7 @@ require("lazy").setup({
   spec = {
     -- import your plugins
     { import = "config.plugins" },
-    { import = "config.plugins.lsp" }
+    { import = "config.plugins.lsp" },
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
