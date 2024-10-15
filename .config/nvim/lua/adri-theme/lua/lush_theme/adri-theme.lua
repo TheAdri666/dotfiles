@@ -108,8 +108,8 @@ local theme = lush(function(injected_functions)
     -- MsgSeparator   { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
     -- MoreMsg        { }, -- |more-prompt|
     -- NonText        { }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-    Normal({ bg = colors.bg, fg = colors.white }), -- Normal text
-    NormalFloat({ Normal }), -- Normal text in floating windows.
+    Normal{ bg = colors.bg, fg = colors.white }, -- Normal text
+    NormalFloat{ Normal }, -- Normal text in floating windows.
     -- FloatBorder    { }, -- Border of floating windows.
     -- FloatTitle     { }, -- Title of floating windows.
     -- NormalNC       { }, -- normal text in non-current windows
@@ -154,40 +154,40 @@ local theme = lush(function(injected_functions)
 
     -- Comment        { }, -- Any comment
 
-    -- Constant       { }, -- (*) Any constant
-    String({ fg = colors.yellow }), --   A string constant: "this is a string"
+    Constant{ fg = colors.blue }, -- (*) Any constant
+    String{ fg = colors.yellow }, --   A string constant: "this is a string"
     -- Character      { }, --   A character constant: 'c', '\n'
-    Number({ fg = colors.orange }), --   A number constant: 234, 0xff
+    Number{ fg = colors.orange }, --   A number constant: 234, 0xff
     Boolean({ fg = colors.blue }), --   A boolean constant: TRUE, false
-    Float({ Number }), --   A floating point constant: 2.3e10
+    Float{ Number }, --   A floating point constant: 2.3e10
 
-    Identifier({ Normal }), -- (*) Any variable name
-    Function({ fg = colors.Aqua }), --   Function name (also: methods for classes)
+    Identifier{ Normal }, -- (*) Any variable name
+    Function{ fg = colors.aqua }, --   Function name (also: methods for classes)
 
     -- Statement      { }, -- (*) Any statement
-    Conditional({ Function }), --   if, then, else, endif, switch, etc.
-    Repeat({ Function }), --   for, do, while, etc.
-    Label({ Function }), --   case, default, etc.
-    Operator({ fg = colors.darkBlue }), --   "sizeof", "+", "*", etc.
-    Keyword({ fg = colors.red }), --   any other keyword
-    Exception({ Function }), --   try, catch, throw
+    Conditional{ Function }, --   if, then, else, endif, switch, etc.
+    Repeat{ Function }, --   for, do, while, etc.
+    Label{ Function }, --   case, default, etc.
+    Operator{ fg = colors.darkBlue }, --   "sizeof", "+", "*", etc.
+    Keyword{ fg = colors.red }, --   any other keyword
+    Exception{ Function }, --   try, catch, throw
 
-    PreProc({ fg = colors.purple }), -- (*) Generic Preprocessor
-    Include({ fg = colors.green }), --   Preprocessor #include
-    Define({ Include }), --   Preprocessor #define
-    Macro({ Include }), --   Same as Define
-    PreCondit({ Include }), --   Preprocessor #if, #else, #endif, etc.
+    PreProc{ fg = colors.green }, -- (*) Generic Preprocessor
+    Include{ PreProc }, --   Preprocessor #include
+    Define{ PreProc }, --   Preprocessor #define
+    Macro{ PreProc }, --   Same as Define
+    PreCondit{ PreProc }, --   Preprocessor #if, #else, #endif, etc.
 
-    Type({ fg = colors.red }), -- (*) int, long, char, etc.
+    Type{ fg = colors.pink }, -- (*) int, long, char, etc.
     -- StorageClass   { }, --   static, register, volatile, etc.
     -- Structure      { }, --   struct, union, enum, etc.
     -- Typedef        { }, --   A typedef
 
-    Special({ fg = colors.pink }), -- (*) Any special symbol
-    -- SpecialChar    { }, --   Special character in a constant
-    -- Tag            { }, --   You can use CTRL-] on this
-    -- Delimiter      { }, --   Character that needs attention
-    -- SpecialComment { }, --   Special things inside a comment (e.g. '\n')
+    Special{ fg = colors.red }, -- (*) Any special symbol
+    SpecialChar{ fg = colors.blue }, --   Special character in a constant
+    Tag{ fg = colors.pink }, --   You can use CTRL-] on this
+    Delimiter{ fg = colors.darkBlue}, --   Character that needs attention
+    SpecialComment{ fg = colors.blue }, --   Special things inside a comment (e.g. '\n')
     -- Debug          { }, --   Debugging statements
 
     -- Underlined     { gui = "underline" }, -- Text that stands out, HTML links
@@ -262,10 +262,10 @@ local theme = lush(function(injected_functions)
     -- sym"@comment"           { }, -- Comment
     -- sym"@punctuation"       { }, -- Delimiter
     -- sym"@constant"          { }, -- Constant
-    -- sym"@constant.builtin"  { }, -- Special
+    sym"@constant.builtin"{ Constant }, -- Special
     -- sym"@constant.macro"    { }, -- Define
-    -- sym"@define"            { }, -- Define
-    -- sym"@macro"             { }, -- Macro
+    sym"@define"{ Define }, -- Define
+    sym"@macro"             { Macro }, -- Macro
     -- sym"@string"            { }, -- String
     -- sym"@string.escape"     { }, -- SpecialChar
     -- sym"@string.special"    { }, -- SpecialChar
@@ -273,21 +273,21 @@ local theme = lush(function(injected_functions)
     -- sym"@character.special" { }, -- SpecialChar
     -- sym"@number"            { }, -- Number
     -- sym"@boolean"           { }, -- Boolean
-    -- sym"@float"             { }, -- Float
+    sym"@float"{ Float }, -- Float
     -- sym"@function"          { }, -- Function
-    -- sym"@function.builtin"  { }, -- Special
+    sym"@function.builtin"{ Function }, -- Special
     -- sym"@function.macro"    { }, -- Macro
-    -- sym"@parameter"         { }, -- Identifier
-    -- sym"@method"            { }, -- Function
-    -- sym"@field"             { }, -- Identifier
-    -- sym"@property"          { }, -- Identifier
+    sym"@parameter"{ Identifier }, -- Identifier
+    sym"@method"{ Function }, -- Function
+    sym"@field"{ Identifier }, -- Identifier
+    sym"@property"{ fg = colors.blue }, -- Identifier
     -- sym"@constructor"       { }, -- Special
-    -- sym"@conditional"       { }, -- Conditional
+    sym"@conditional"{ Conditional }, -- Conditional
     -- sym"@repeat"            { }, -- Repeat
     -- sym"@label"             { }, -- Label
     -- sym"@operator"          { }, -- Operator
     -- sym"@keyword"           { }, -- Keyword
-    -- sym"@exception"         { }, -- Exception
+    sym"@exception"{ Exception }, -- Exception
     -- sym"@variable"          { }, -- Identifier
     -- sym"@type"              { }, -- Type
     -- sym"@type.definition"   { }, -- Typedef
@@ -295,9 +295,12 @@ local theme = lush(function(injected_functions)
     -- sym"@structure"         { }, -- Structure
     -- sym"@namespace"         { }, -- Identifier
     -- sym"@include"           { }, -- Include
-    -- sym"@preproc"           { }, -- PreProc
+    sym"@preproc"{ PreProc }, -- PreProc
     -- sym"@debug"             { }, -- Debug
     -- sym"@tag"               { }, -- Tag
+    sym"@keyword.conditional.ternary"{ Operator }, -- Keyword
+    sym"@tag.builtin.javascript"{ Tag }, -- Special
+    sym"@tag.delimiter.javascript"{ Delimiter } -- Tag
   }
 end)
 
