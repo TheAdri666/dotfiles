@@ -16,15 +16,6 @@ return {
         [""] = 110,
         lua = 210,
       },
-      --[[highlight = {
-        "RainbowDelimiterRed",
-        "RainbowDelimiterOrange",
-        "RainbowDelimiterYellow",
-        "RainbowDelimiterGreen",
-        "RainbowDelimiterCyan",
-        "RainbowDelimiterBlue",
-        "RainbowDelimiterViolet",
-      },]]
     }
   end,
 }
