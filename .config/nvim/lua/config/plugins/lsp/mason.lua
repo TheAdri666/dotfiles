@@ -43,7 +43,7 @@ return {
         "csharp_ls",
         "clangd",
         "clojure_lsp",
-        "cmake",
+        "neocmake",
         "dockerls",
         "elixirls",
         "elp",
