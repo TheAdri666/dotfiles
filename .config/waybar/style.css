@@ -26,6 +26,7 @@ window#waybar {
 #custom-updates,
 #cpu,
 #memory,
+#custom-audio-idle-inhibitor,
 #disk {
     background: #242424;
     margin: 4px 0px 4px 0px;
@@ -47,6 +48,14 @@ tooltip {
 
 #memory {
     padding-left: 19px;
+}
+
+#custom-audio-idle-inhibitor {
+    color: #FF7B6B;
+    padding-left: 19px;
+    padding-right: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 #cpu.good,
