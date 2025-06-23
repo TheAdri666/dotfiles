@@ -111,7 +111,7 @@ alias update-grub='grub-mkconfig -o /boot/grub/grub.cfg'
 alias scrcpy='scrcpy --prefer-text'
 alias code='code --enable-features=UseOzonePlatform --ozone-platform=wayland'
 # PS1='%B%F{red}[%F{yellow}%n%F{green}@%F{039}%m %F{129}%~%F{red}]%F{white}%% %b%f'
-PS1='%B%F{red}[%F{11}%n%F{10}@%F{039}%m %F{129}%~%F{red}]%F{white}%% %b%f'
+PS1='%B%F{red}[%F{11}%n%F{10}@%F{039}%m %F{129}%~%F{red}]%F{white}%(!.#.$) %b%f'
 neofetch
 
 export LC_ALL=en_US.UTF-8
@@ -122,4 +122,5 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 PATH=~/.console-ninja/.bin:$PATH
+
 source ~/.ai-shell/suggest.zsh
