@@ -1,0 +1,1 @@
+scripts/connect-sinks.sh

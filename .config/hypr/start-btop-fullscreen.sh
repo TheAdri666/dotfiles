@@ -1,0 +1,1 @@
+scripts/start-btop-fullscreen.sh
