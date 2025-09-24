@@ -1,1 +1,0 @@
-scripts/get-updates.sh

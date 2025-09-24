@@ -1,1 +1,0 @@
-scripts/open-ranger.sh
